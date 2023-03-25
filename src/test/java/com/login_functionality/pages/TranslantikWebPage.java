@@ -17,6 +17,43 @@ public class TranslantikWebPage {
     @FindBy(xpath = "//input[@type='password']")
     public WebElement passwordField;
 
-    @FindBy(xpath = "//button[@type='submit']")
-    public WebElement loginButton;
+    @FindBy(xpath = "//a[.='Forgot your password?']")
+    public WebElement forgotPasswordLink;
+
+    @FindBy(xpath = "//span[@class='custom-checkbox__icon']")
+    public WebElement rememberMeButton;
+
+    @FindBy (xpath = "//a[@class='dropdown-toggle']")
+    public WebElement profile;
+
+    @FindBy(xpath = "//a[@class='no-hash']")
+    public WebElement logoutButton;
+
+    public boolean popUpMessage(String message) {
+        boolean flag = false;
+        if (usernameField.getText().equals("")){
+            if(usernameField.getAttribute("validationMessage").equals(message)){
+                flag = true;
+            }
+        }
+        if(passwordField.getText().equals("")){
+            if(passwordField.getAttribute("validationMessage").equals(message)){
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public String isBulletSign(){
+        return passwordField.getAttribute("type");
+    }
+
+    public String profileMenu(){
+        return profile.getAttribute("innerText\n");
+    }
+
+
+
+
+
 }
